@@ -1,0 +1,36 @@
+<div class="row visible-xs">
+    <div>
+        <div class="col-md-4" ng-repeat="d in $ctrl.data">
+            <div>
+                <h3>Weather for {{d.location.city}}, {{d.location.region}}</h3>
+                <div class="well well-lg" >
+                    <div class="weekly-forecast">
+                        <div ng-repeat="forecast in d.item.forecast | limitTo: 7">
+                            <h4>{{forecast.date}}</h4>
+                            <p>High: {{forecast.high}} <i class="wi wi-fahrenheit"></i></p>
+                            <p>Low: {{forecast.low}} <i class="wi wi-fahrenheit"></i></p>
+                            <i class="wi {{$ctrl.conditions[forecast.code]}}"></i>
+                            <p>{{forecast.text}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row hidden-xs">
+    <div class="col-xs-12" ng-repeat="d in $ctrl.data">
+        <h3>Weather for {{d.location.city}}, {{d.location.region}}</h3>
+        <div class="well well-lg">
+            <div class="weekly-forecast">
+                <div ng-repeat="forecast in d.item.forecast | limitTo: 7" class="forecast-block">
+                    <h4>{{forecast.date}}</h4>
+                    <p>High: {{forecast.high}} <i class="wi wi-fahrenheit"></i></p>
+                    <p>Low: {{forecast.low}} <i class="wi wi-fahrenheit"></i></p>
+                    <i class="wi {{$ctrl.conditions[forecast.code]}}"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

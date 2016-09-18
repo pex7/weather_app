@@ -1,0 +1,49 @@
+body {
+  margin: 4rem 0;
+}
+.well {
+  background: #77A6B6;
+  background: -webkit-linear-gradient(#77A6B6, #9DC3C2);
+  background: -moz-linear-gradient(#77A6B6, #9DC3C2);
+  background: -o-linear-gradient(#77A6B6, #9DC3C2);
+  background: linear-gradient(#77A6B6, #9DC3C2);
+  color: #fff;
+  height: 20rem;
+  text-align: center;
+}
+@media (max-width: 767px) {
+  .well {
+    height: auto;
+  }
+}
+.well .weekly-forecast {
+  position: relative;
+  height: 100%;
+  display: inline-block;
+}
+@media (max-width: 767px) {
+  .well .weekly-forecast {
+    width: 100%;
+    height: auto;
+    text-align: center;
+  }
+  .well .weekly-forecast div {
+    border: 1px solid #eee;
+  }
+}
+.well .forecast-block {
+  display: inline;
+  float: left;
+  padding: 2em;
+  position: relative;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+.well i.wi {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+.well p .wi-fahrenheit {
+  vertical-align: middle;
+  margin-bottom: 0;
+}
