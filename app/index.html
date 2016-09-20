@@ -12,13 +12,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
-		<div class="container-fluid" ng-controller="mainCtrl as ctrl" ng-init="ctrl.getForecast(10001)">
-			<h1>Weather App</h1>
-            <form class="form-inline">
-                <input type="text" ng-model="ctrl.zip" class="form-control" placeholder="Enter zip code">
-                <input type="submit" class="btn btn-default" ng-click="ctrl.getForecast(ctrl.zip)" value="Get weather">
-            </form>
-            <hr />
+		<div class="container-fluid" ng-controller="mainCtrl as ctrl" ng-init="ctrl.getAllForecasts(ctrl.$storage.zipCodes)">
+			<div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+				<h1>Weather App</h1>
+                <form class="form-inline">
+                    <input type="text" ng-model="ctrl.zip" class="form-control" placeholder="Enter zip code">
+                    <input type="submit" class="btn btn-default" ng-click="ctrl.getForecast(ctrl.zip)" value="Get weather">
+                </form>
+                <hr />
+			</div>
+
 			<forecast data="ctrl.data" conditions="ctrl.conditions"></forecast>
 		</div>
 		<!-- bower:js -->
@@ -26,6 +29,7 @@
 		<script src="bower_components/angular-animate/angular-animate.js"></script>
 		<script src="bower_components/angular-touch/angular-touch.js"></script>
 		<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+		<script src="bower_components/ngstorage/ngStorage.js"></script>
 		<!-- endbower -->
 		<script src="weather/app.js"></script>
 		<script src="weather/controller.js"></script>

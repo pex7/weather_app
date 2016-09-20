@@ -1,4 +1,4 @@
-<div class="row visible-xs">
+<div class="row visible-xxs">
     <div>
         <div class="col-md-4" ng-repeat="d in $ctrl.data">
             <div>
@@ -6,11 +6,10 @@
                 <div class="well well-lg" >
                     <div class="weekly-forecast">
                         <div ng-repeat="forecast in d.item.forecast | limitTo: 7">
-                            <h4>{{forecast.date}}</h4>
+                            <h4>{{forecast.day}} {{forecast.date | limitTo: 2}}</h4>
                             <p>High: {{forecast.high}} <i class="wi wi-fahrenheit"></i></p>
                             <p>Low: {{forecast.low}} <i class="wi wi-fahrenheit"></i></p>
                             <i class="wi {{$ctrl.conditions[forecast.code]}}"></i>
-                            <p>{{forecast.text}}</p>
                         </div>
                     </div>
                 </div>
@@ -19,15 +18,14 @@
     </div>
 </div>
 
-<div class="row hidden-xs">
-    <div class="col-xs-12" ng-repeat="d in $ctrl.data">
-        <h3>Weather for {{d.location.city}}, {{d.location.region}}</h3>
+<div class="row hidden-xxs">
+    <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2" ng-repeat="d in $ctrl.data">
+        <h3>Weather for {{d.location.city}}, {{d.location.region}} <button class="btn btn-default pull-right" ng-click="$ctrl.removeForecast($index)">x</button></h3>
         <div class="well well-lg">
             <div class="weekly-forecast">
                 <div ng-repeat="forecast in d.item.forecast | limitTo: 7" class="forecast-block">
-                    <h4>{{forecast.date}}</h4>
-                    <p>High: {{forecast.high}} <i class="wi wi-fahrenheit"></i></p>
-                    <p>Low: {{forecast.low}} <i class="wi wi-fahrenheit"></i></p>
+                    <h4>{{forecast.day}} {{forecast.date | limitTo: 2}}</h4>
+                    <p>{{forecast.high}} <i class="wi wi-fahrenheit"></i> | {{forecast.low}} <i class="wi wi-fahrenheit"></i></p>
                     <i class="wi {{$ctrl.conditions[forecast.code]}}"></i>
                 </div>
             </div>

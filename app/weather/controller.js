@@ -1,5 +1,5 @@
 angular.module('weatherApp')
-    .controller('mainCtrl', ['weatherFactory', function(weatherFactory) {
+    .controller('mainCtrl', ['weatherFactory','$localStorage', function(weatherFactory, $localStorage) {
 
         var that = this;
 
@@ -16,11 +16,28 @@ angular.module('weatherApp')
 
         that.data = [];
 
+        that.$storage = $localStorage.$default({
+           zipCodes: ['10001']
+        });
+
+        that.getAllForecasts = function(zipCodes) {
+            for (var zip in zipCodes) {
+                that.getForecast(zipCodes[zip]);
+            }
+        };
+
+        that.removeForecast = function(index) {
+            console.log(that.$storage.zipCodes);
+            that.$storage.zipCodes.splice(index,1);
+            that.data.splice(index, 1);
+        };
+
         that.getForecast = function(zip) {
+            that.$storage.zipCodes.push(zip);
             that.zip = '';
             weatherFactory.getForecast(zip).then(function(data) {
+                data.zipcode = zip;
                 that.data.push(data);
-                console.log(that.data);
             });
         };
 

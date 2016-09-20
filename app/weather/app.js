@@ -1,2 +1,2 @@
-angular.module('weatherApp', ['ui.bootstrap']);
+angular.module('weatherApp', ['ui.bootstrap','ngStorage']);
 
