@@ -17,27 +17,33 @@ angular.module('weatherApp')
         that.data = [];
 
         that.$storage = $localStorage.$default({
-           zipCodes: ['10001']
+           locations: []
         });
 
-        that.getAllForecasts = function(zipCodes) {
-            for (var zip in zipCodes) {
-                that.getForecast(zipCodes[zip]);
+        that.getAllForecasts = function(locations) {
+            for (var i = 0; i < locations.length; i++) {
+                that.getForecast(locations[i]);
             }
         };
 
+        that.addForecast = function(loc) {
+            that.$storage.locations.push(loc);
+            that.loc = '';
+            that.getForecast(loc);
+        }
+
         that.removeForecast = function(index) {
-            console.log(that.$storage.zipCodes);
-            that.$storage.zipCodes.splice(index,1);
+            that.$storage.locations.splice(index, 1);
             that.data.splice(index, 1);
         };
-
-        that.getForecast = function(zip) {
-            that.$storage.zipCodes.push(zip);
-            that.zip = '';
-            weatherFactory.getForecast(zip).then(function(data) {
-                data.zipcode = zip;
+        
+        that.getForecast = function(loc) {
+            console.log(loc);
+            weatherFactory.getForecast(loc).then(function(data) {
+                data.loc = loc;
                 that.data.push(data);
+                console.log(that.$storage.locations);
+                console.log(that.data);
             });
         };
 

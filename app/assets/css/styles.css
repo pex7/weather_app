@@ -1,6 +1,9 @@
 body {
   margin: 4rem 0;
 }
+#cityOrZip {
+  width: 25%;
+}
 .well {
   background: #77A6B6;
   background: -webkit-linear-gradient(#77A6B6, #9DC3C2);

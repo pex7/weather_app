@@ -1,8 +1,14 @@
 angular.module('weatherApp')
     .factory('weatherFactory', ['$http', '$q', function($http, $q) {
-        function getForecast(zip) {
+        var url;
+        function getForecast(location) {
             var deferred = $q.defer();
-            $http.get('https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='+zip+')&format=json&callback=')
+            if (typeof location === 'number') {
+                url = 'https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='+location+')&format=json&callback=';
+            } else if (typeof location === 'string') {
+                url = 'https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="'+location+'")&format=json&callback=';
+            }
+                $http.get(url)
                 .success(function(data) {
                     deferred.resolve(data.query.results.channel);
                 })

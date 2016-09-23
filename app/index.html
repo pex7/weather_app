@@ -12,12 +12,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
-		<div class="container-fluid" ng-controller="mainCtrl as ctrl" ng-init="ctrl.getAllForecasts(ctrl.$storage.zipCodes)">
+		<div class="container-fluid" ng-controller="mainCtrl as ctrl" ng-init="ctrl.getAllForecasts(ctrl.$storage.locations)">
 			<div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
 				<h1>Weather App</h1>
                 <form class="form-inline">
-                    <input type="text" ng-model="ctrl.zip" class="form-control" placeholder="Enter zip code">
-                    <input type="submit" class="btn btn-default" ng-click="ctrl.getForecast(ctrl.zip)" value="Get weather">
+					<label for="cityOrZip" class="sr-only">City or Zipcode</label>
+                    <input type="text" ng-model="ctrl.loc" id="cityOrZip" class="form-control" placeholder="Enter city, state or zip code">
+                    <input type="submit" class="btn btn-default" ng-click="ctrl.addForecast(ctrl.loc)" value="Get weather">
                 </form>
                 <hr />
 			</div>
